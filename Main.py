@@ -23,7 +23,7 @@ def calculateArrangements(cube1, cube2, cube3, cube4, cube5, cube6, cube7, cube8
 calculateArrangements("lightBlue", "lightBlue", "lightBlue", "green", "green", "orange", "teal", "teal", "golden")
 
 for combination in boardArrayCombinations:
-    solutionFound = Rules.columnPosition(combination, "left", "green", 2)
+    solutionFound = Rules.rowPosition(combination, "top", "green", 2)
     print(solutionFound)
     if solutionFound == True:
         print(combination)
