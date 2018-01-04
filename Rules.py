@@ -65,9 +65,39 @@ def rowPosition(combination, position, colour, quantity):
             return False
 
 #Rule for position of cubes in same row
-#def sameRow(combination, colour1, quantity1=1, colour2, quantity2=1, colour3, quantity3=1):
-    #topRowSet = {combination[0], combination[1], combination[2]}
-    #bottomRowSet = {combination[6], combination[7], combination[8]}
-    #centreRowSet = {combination[3], combination[4], combination[5]}
-    #rows = [topRowSet, bottomRowSet, centreRowSet]
-    #for row in rows:
+# def sameRow(combination, colour1, colour2, colour3 = None):
+#     topRowSet = {combination[0], combination[1], combination[2]}
+#     bottomRowSet = {combination[6], combination[7], combination[8]}
+#     centreRowSet = {combination[3], combination[4], combination[5]}
+#     rows = [topRowSet, bottomRowSet, centreRowSet]
+#     colours = [colour1, colour2, colour3]
+#     for row in rows:
+#         for colour in colours:
+#             for cube in row:
+#                 if colour3 == None:
+#                     if colour2
+#                 else:
+
+#Rule for subject cube being between two others
+def between(combination, colour1, colour2, colour3):
+    possibleSubjectCubeIndexes = [1, 3, 4, 5, 7]
+    possibleHorizontalSubjectCubeIndexes = [1, 4, 7]
+    possibleVerticalSubjectCubeIndexes = [3, 4, 5]
+    for index in possibleSubjectCubeIndexes:
+        if combination[index] == colour1:
+            if index == 1 or index == 7:
+                if (combination[index-1] == colour2 and combination[index+1] == colour3) or \
+                    (combination[index-1] == colour3 and combination[index+1] == colour2):
+                        return True
+            elif index == 3 or index == 5:
+                if (combination[index-3] == colour2 and combination[index+3] == colour3) or \
+                    (combination[index-3] == colour3 and combination[index+3] == colour2):
+                        return True
+            elif index == 4:
+                if (combination[index-1] == colour2 and combination[index+1] == colour3) or \
+                    (combination[index-1] == colour3 and combination[index+1] == colour2) or \
+                    (combination[index-3] == colour2 and combination[index+3] == colour3) or \
+                    (combination[index-3] == colour3 and combination[index+3] == colour2):
+                        return True
+            else:
+                return False
