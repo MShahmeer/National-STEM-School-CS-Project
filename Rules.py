@@ -75,3 +75,11 @@ def rowPosition(combination, position, colour, quantity):
             return True
         else:
             return False
+
+#Rule for position of cubes in same row
+#def sameRow(combination, colour1, quantity1=1, colour2, quantity2=1, colour3, quantity3=1):
+#    topRowSet = {combination[0], combination[1], combination[2]}
+    #bottomRowSet = {combination[6], combination[7], combination[8]}
+    #centreRowSet = {combination[3], combination[4], combination[5]}
+    #rows = [topRowSet, bottomRowSet, centreRowSet]
+    #for row in rows:
