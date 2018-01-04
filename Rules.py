@@ -80,24 +80,21 @@ def rowPosition(combination, position, colour, quantity):
 
 #Rule for subject cube being between two others
 def between(combination, colour1, colour2, colour3):
-    possibleSubjectCubeIndexes = [1, 3, 4, 5, 7]
-    possibleHorizontalSubjectCubeIndexes = [1, 4, 7]
-    possibleVerticalSubjectCubeIndexes = [3, 4, 5]
+    possibleSubjectCubeIndexes = [1, 4, 7]
     for index in possibleSubjectCubeIndexes:
-        if combination[index] == colour1:
-            if index == 1 or index == 7:
-                if (combination[index-1] == colour2 and combination[index+1] == colour3) or \
-                    (combination[index-1] == colour3 and combination[index+1] == colour2):
-                        return True
-            elif index == 3 or index == 5:
-                if (combination[index-3] == colour2 and combination[index+3] == colour3) or \
-                    (combination[index-3] == colour3 and combination[index+3] == colour2):
-                        return True
-            elif index == 4:
-                if (combination[index-1] == colour2 and combination[index+1] == colour3) or \
-                    (combination[index-1] == colour3 and combination[index+1] == colour2) or \
-                    (combination[index-3] == colour2 and combination[index+3] == colour3) or \
-                    (combination[index-3] == colour3 and combination[index+3] == colour2):
-                        return True
-            else:
-                return False
+        if combination[index] != colour1:
+            continue
+        if combination[index-1] == colour2 and combination[index+1] == colour3) or \
+            (combination[index-1] == colour3 and combination[index+1] == colour2):
+            return True
+    possibleSubjectCubeIndexes = [3, 4, 5]
+    for index in possibleSubjectCubeIndexes:
+        if combination[index] != colour1:
+            continue
+        if (combination[index-3] == colour2 and combination[index+3] == colour3) or \
+            (combination[index-3] == colour3 and combination[index+3] == colour2):
+            return True
+    return False
+
+#Rule for cubes touching each other
+def touch(combination, ):
