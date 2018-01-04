@@ -6,8 +6,6 @@ def columnPosition(combination, position, colour, quantity):
         for cube in leftColumnArray:
             if cube == colour:
                 matchingCubes += 1
-            else:
-                pass
         if matchingCubes >= quantity:
             return True
         else:
@@ -18,8 +16,6 @@ def columnPosition(combination, position, colour, quantity):
         for cube in rightColumnArray:
             if cube == colour:
                 matchingCubes += 1
-            else:
-                pass
         if matchingCubes >= quantity:
             return True
         else:
@@ -30,8 +26,6 @@ def columnPosition(combination, position, colour, quantity):
         for cube in centreColumnArray:
             if cube == colour:
                 matchingCubes += 1
-            else:
-                pass
         if matchingCubes >= quantity:
             return True
         else:
@@ -45,8 +39,6 @@ def rowPosition(combination, position, colour, quantity):
         for cube in topRowArray:
             if cube == colour:
                 matchingCubes += 1
-            else:
-                pass
         if matchingCubes >= quantity:
             return True
         else:
@@ -57,8 +49,6 @@ def rowPosition(combination, position, colour, quantity):
         for cube in bottomRowArray:
             if cube == colour:
                 matchingCubes += 1
-            else:
-                pass
         if matchingCubes >= quantity:
             return True
         else:
@@ -69,8 +59,6 @@ def rowPosition(combination, position, colour, quantity):
         for cube in centreRowArray:
             if cube == colour:
                 matchingCubes += 1
-            else:
-                pass
         if matchingCubes >= quantity:
             return True
         else:
@@ -78,7 +66,7 @@ def rowPosition(combination, position, colour, quantity):
 
 #Rule for position of cubes in same row
 #def sameRow(combination, colour1, quantity1=1, colour2, quantity2=1, colour3, quantity3=1):
-#    topRowSet = {combination[0], combination[1], combination[2]}
+    #topRowSet = {combination[0], combination[1], combination[2]}
     #bottomRowSet = {combination[6], combination[7], combination[8]}
     #centreRowSet = {combination[3], combination[4], combination[5]}
     #rows = [topRowSet, bottomRowSet, centreRowSet]
