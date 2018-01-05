@@ -25,8 +25,8 @@ def solve(boardArray):
     solution = []
     i = 0
     for combination in itertools.permutations(boardArray, len(boardArray)):
-        if Rules.between(combination, "green", "orange", "golden"):
+        if Rules.sameColumn(combination, "lightBlue", "lightBlue", "green"):
             return combination
 
 #findGoldenCube(solve(["lightBlue", "lightBlue", "lightBlue", "green", "green", "orange", "teal", "teal", "golden"]))
-solve(["lightBlue", "lightBlue", "lightBlue", "green", "green", "orange", "teal", "teal", "golden"])
+solve(["lightBlue", "lightBlue", "green", "green", "lightBlue", "orange", "teal", "teal", "golden"])
