@@ -1,0 +1,6 @@
+lightBlue lightBlue lightBlue green green orange teal teal golden
+
+column left green 2
+row bottom teal 2
+row top lightBlue 3
+column right orange 1

@@ -1,5 +1,8 @@
 import itertools
 import Rules
+import Parser
+
+from termcolor import colored
 
 boardArray = []
 indexLabels = {0:"top-left", 1:"top-centre", 2:"top-right", 3:"centre-left", 4:"centre", 5:"centre-right", 6:"bottom-left", 7:"bottom-centre", 8:"bottom-right"}
@@ -19,14 +22,16 @@ def findGoldenCube(solution):
     for cube in solution:
         index += 1
         if cube == "golden":
-            print("The golden cube is at the " + indexLabels[index] + " position.")
+            text = "The golden cube is at the " + indexLabels[index] + " position."
+            print(colored(text, "red", "on_yellow"))
 
-def solve(boardArray):
+def solve(fileName):
     solution = []
-    i = 0
+    boardArray, rulesList = Parser.parseGameFile(fileName)
+    print(rulesList)
     for combination in itertools.permutations(boardArray, len(boardArray)):
-        if Rules.sameColumn(combination, "lightBlue", "lightBlue", "green"):
+        #print(combination)
+        if Parser.parseRuleLines(rulesList, combination):
             return combination
 
-#findGoldenCube(solve(["lightBlue", "lightBlue", "lightBlue", "green", "green", "orange", "teal", "teal", "golden"]))
-solve(["lightBlue", "lightBlue", "green", "green", "lightBlue", "orange", "teal", "teal", "golden"])
+findGoldenCube(solve("1.txt"))

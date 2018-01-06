@@ -1,0 +1,13 @@
+pink yellow lightBlue green orange darkBlue teal grey golden
+
+row top yellow 1
+row top darkBlue 1
+row bottom teal 1
+row bottom grey 1
+sameRow green lightBlue
+column left lightBlue 1
+corner bottomright orange 1
+column right green 1
+column right yellow 1
+sameColumn pink darkBlue
+sameColumn darkBlue grey

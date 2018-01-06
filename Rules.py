@@ -84,7 +84,8 @@ def between(combination, colour1, colour2, colour3):
 
 #Rule for a cube in a certain direction
 def direction(combination, action, colour1, colour2):
-    if action == 'left':
+    value = -1
+    if action == "left":
         for cube in combination:
             if cube == colour1:
                 index = combination.index(cube)
@@ -100,7 +101,7 @@ def direction(combination, action, colour1, colour2):
                         return False
                 else:
                     return False
-    elif action == 'right':
+    elif action == "right":
          for cube in combination:
             if cube == colour1:
                 index = combination.index(cube)
@@ -116,37 +117,30 @@ def direction(combination, action, colour1, colour2):
                         return False
                 else:
                     return False
-    elif action == 'above':
+    elif action == "above":
         for cube in combination:
             if cube == colour1:
                 index = combination.index(cube)
-                if index-3 >= 0:
-                    if combination[index-3] == colour2:
-                        return True
-                    elif index-6 >= 0 and combination[index-6] == colour2:
-                        return True
-                    else:
-                        return False
-    elif action == 'below':
-        for cube in combination:
-            if cube == color1:
-                index = combination.index(cube)
-                if index+3 <= 8:
-                    print(value)
-                    if combination[value+3] == color2:
-                        return True
-                    else:
-                        return False
-        for cube in combination:
-            if cube == colour1:
-                index = combination.index(cube)
-                if index+3 >= 8:
+                if index <= 5 and index >= 3:
                     if combination[index+3] == colour2:
                         return True
-                    elif index+6 >= 6 and combination[index+6] == colour2:
+                    elif index >= 0 and combination[index-6] == colour2:
                         return True
                     else:
                         return False
+    elif action == "below":
+        for cube in combination:
+            value += 1
+            if cube == colour1:
+                if value-3 >= 0:
+                    if combination[value-3] == colour2:
+                        return True
+                    elif value-6 >= 0 and combination[value-6] == colour2:
+                        return True
+                    else:
+                        return False
+    else:
+        return False
 
 #Rule for position of cubes in same row
 def sameRow(combination, colour1, colour2, colour3 = None):
@@ -163,12 +157,13 @@ def sameRow(combination, colour1, colour2, colour3 = None):
                 return False
     else:
         for row in rows:
-            colours.pop()
+            del colours[2]
             if set(colours).issubset(set(row)):
                 return True
             else:
                 return False
 
+#Rule for position of cubes in same column
 def sameColumn(combination, colour1, colour2, colour3 = None):
     leftColumnSet = [combination[0], combination[3], combination[6]]
     rightColumnSet = [combination[2], combination[5], combination[8]]
@@ -190,7 +185,75 @@ def sameColumn(combination, colour1, colour2, colour3 = None):
                 return False
 
 #Rule for cubes touching each other
-# def touch(combination, colour1, quantity1 = 1, colour2, quantity2 = 1, colour3 = None, quantity3 = None, not = False):
-#     indexes = [0, 1, 2, 3, 4, 5, 6, 7, 8]
-#      for index in indexes:
-#          if index == 0:
+# def touch(combination, colour1, quantity1 = 1, colour2, quantity2 = 1, colour3 = None, quantity3 = None, notVar = False):
+#      indexes = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+#       for index in indexes:
+#           if index == 0:
+
+# def touch(combination, colour1, colour2):
+#
+#     touchIndexes1 = [combination[0],combination[1],combination[3],combination[4],combination[6],combination[7],combination[0],combination[3],
+#                         combination[1],combination[4],combination[2],combination[5]]
+#
+#     touchIndexes2 = [combination[1],combination[2],combination[4],combination[5],combination[7],combination[8],combination[7],combination[6],
+#                          combination[4],combination[7],combination[5],combination[8]]
+#
+#     for cubes1 in touching_indexes1:
+#         if cubes1 == colour1:
+#             value = combination.index(cubes1)
+#             if touching_indexes2[value] == colour2 :
+#                     return True
+#             else:
+#                     return False
+
+def touch(combination, colour1, colour2, notVar):
+
+    touching_indexes1 = [combination[0],combination[1],combination[3],combination[4],combination[6],combination[7],combination[0],combination[3],
+                        combination[1],combination[4],combination[2],combination[5]]
+
+    touching_indexes2 = [combination[1],combination[2],combination[4],combination[5],combination[7],combination[8],combination[7],combination[6],
+                         combination[4],combination[7],combination[5],combination[8]]
+
+    for cubes1 in touching_indexes1:
+        if cubes1 == colour1:
+            value = combination.index(cubes1)
+            if touching_indexes2[value] == colour2 :
+                    return True
+            else:
+                    return False
+
+#Rule for colour in corner
+def corner(combination, colour1, quantity, location = None, notVar = False):
+    corners = {combination[0]:"top-left", combination[2]:"top-right", combination [6]:"bottom-left", combination [8]:"bottom-right"}
+    matchingCubes = 0
+    for cube in corners:
+        if notVar == False:
+            if location == None:
+                if cube == colour1:
+                    matchingCubes += 1
+                    if matchingCubes >= quantity:
+                        return True
+                    else:
+                        return False
+            elif not location == None:
+                if cube == colour1 and (corners[cube] == location):
+                    matchingCubes += 1
+                    if matchingCubes >= quantity:
+                        return True
+                    else:
+                        return False
+        else:
+            if location == None:
+                if not cube == colour1:
+                    matchingCubes += 1
+                    if matchingCubes >= quantity:
+                        return True
+                    else:
+                        return False
+            elif not location == None:
+                if not cube == colour1 and (corners[cube] == location):
+                    matchingCubes += 1
+                    if matchingCubes >= quantity:
+                        return True
+                    else:
+                        return False

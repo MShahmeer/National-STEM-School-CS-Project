@@ -1,0 +1,7 @@
+pink pink lightBlue green darkBlue darkBlue teal teal golden
+
+row bottom teal 2
+row top pink 1
+column right lightBlue 1
+between green darkBlue darkBlue
+between green pink pink
